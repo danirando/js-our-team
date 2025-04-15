@@ -42,17 +42,46 @@ const rowEl = document.querySelector(".row");
 for (i = 0; i < teamMembers.length; i++) {
   const { name, role, email, img } = teamMembers[i];
 
+  const newCard = () => {
+    rowEl.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-12 mb-5">
+  <div class="d-flex flex-shrink-0">
+    <div>
+      <img src="./assets/${img}" alt="" height="100vh" />
+    </div>
+    <div
+      class="d-flex flex-column justify-content-center bg-dark text-white p-2" style="width: 300px">
+      <h5 class="m-0">${name}</h5>
+      <p class="m-0">${role}</p>
+      <p class="text-primary m-0">${email}</p>
+    </div>
+  </div>
+</div>`;
+  };
+
+  newCard();
+}
+
+const formEl = document.getElementById("form-new-member");
+const nameEl = document.getElementById("name");
+const roleEl = document.getElementById("Role");
+const emailEl = document.getElementById("email");
+
+formEl.addEventListener("submit", function (event) {
+  event.preventDefault();
   rowEl.innerHTML += `<div class="col-lg-4 col-md-6 col-sm-12 mb-5">
           <div class="d-flex flex-shrink-0">
             <div>
-              <img src="./assets/${img}" alt="" height="100vh" />
+              <img src="./assets/img/user-6380868_640.webp" alt="" height="100vh" />
             </div>
             <div
               class="d-flex flex-column justify-content-center bg-dark text-white p-2" style="width: 300px">
-              <h5 class="m-0">${name}</h5>
-              <p class="m-0">${role}</p>
-              <p class="text-primary m-0">${email}</p>
+              <h5 class="m-0">${nameEl.value}</h5>
+              <p class="m-0">${roleEl.value}</p>
+              <p class="text-primary m-0">${emailEl.value}</p>
             </div>
           </div>
         </div>`;
-}
+  nameEl.value = "";
+  roleEl.value = "";
+  emailEl.value = "";
+});
